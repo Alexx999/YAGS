@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC5A5BBE-7806-4AD2-B05D-925F4953D3DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yags</RootNamespace>
+    <AssemblyName>Yags</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\DataUtils.cs" />
+    <Compile Include="Core\JsonMethodRunner.cs" />
+    <Compile Include="Core\MethodErrorCode.cs" />
+    <Compile Include="Core\MethodResult.cs" />
+    <Compile Include="Core\MethodRunner.cs" />
+    <Compile Include="Core\Rectangle.cs" />
+    <Compile Include="Core\Server.cs" />
+    <Compile Include="Core\ServerMethod.cs" />
+    <Compile Include="Core\ServerMethodDisabledAttribute.cs" />
+    <Compile Include="Core\ServerMethodFactory.cs" />
+    <Compile Include="Extensions\IEnumerableExt.cs" />
+    <Compile Include="Http\DisconnectHandler.cs" />
+    <Compile Include="Http\HttpFile.cs" />
+    <Compile Include="Http\HttpHandler.cs" />
+    <Compile Include="Http\HttpServer.cs" />
+    <Compile Include="Log\LogHelper.cs" />
+    <Compile Include="Log\NLogFactory.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\SessionController.cs" />
+    <Compile Include="Session\UserSession.cs" />
+    <Compile Include="Session\UserSessionData.cs" />
+    <Compile Include="Socket\ISocketHandler.cs" />
+    <Compile Include="Socket\PacketHeader.cs" />
+    <Compile Include="Socket\FlashPolicySocketHandler.cs" />
+    <Compile Include="Socket\PolicySocketServer.cs" />
+    <Compile Include="Socket\SocketAsyncExtension.cs" />
+    <Compile Include="Socket\SocketHandler.cs" />
+    <Compile Include="Socket\SocketHandlerBase.cs" />
+    <Compile Include="Socket\SocketServer.cs" />
+    <Compile Include="Socket\SocketServerBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
