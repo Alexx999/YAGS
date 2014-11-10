@@ -93,7 +93,7 @@ namespace Yags.Core
 
             var argArray = request.Args;
 
-            if (paramCount > 0 && (argArray == null || argArray.Count < paramCount))
+            if (argArray == null || argArray.Count < paramCount)
             {
                 return null;
             }
