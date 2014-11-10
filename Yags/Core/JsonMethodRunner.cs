@@ -93,7 +93,7 @@ namespace Yags.Core
 
             var argArray = request.Args;
 
-            if (argArray.Count < paramCount)
+            if (paramCount > 0 && (argArray == null || argArray.Count < paramCount))
             {
                 return null;
             }
@@ -136,11 +136,11 @@ namespace Yags.Core
 
 
         [UsedImplicitly]
-        public class ClientRequest
+        public struct ClientRequest
         {
-            [UsedImplicitly]
+            [NotNull, UsedImplicitly]
             public string Func;
-            [UsedImplicitly]
+            [CanBeNull, UsedImplicitly]
             public JArray Args;
         }
     }
