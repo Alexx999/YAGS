@@ -13,8 +13,6 @@ namespace Yags.Socket
         private ISocketHandler _handler;
         private System.Net.Sockets.Socket _serverSocket;
         private bool _isListening;
-        private int _currentOutstandingAccepts;
-        private int _currentOutstandingRequests;
         private FieldInfo _rightEndPointField;
 
         protected SocketServerBase(LoggerFactoryFunc loggerFactory, ISocketHandler handler)
@@ -41,18 +39,12 @@ namespace Yags.Socket
                 var headerSize = GetHeaderSize();
                 AcceptResult result = await _serverSocket.AcceptAsync(socket, headerSize);
 #if DEBUG
-                if (socket == result.Socket)
-                {
-                    LogHelper.LogVerbose(_logger, "Socket client connected, socket reused");
-                }
-                else
-                {
-                    LogHelper.LogVerbose(_logger, "Socket client connected, socket created");
-                }
+                LogHelper.LogVerbose(_logger,
+                    socket == result.Socket
+                        ? "Socket client connected, socket reused"
+                        : "Socket client connected, socket created");
 #endif
                 socket = result.Socket;
-                //Interlocked.Decrement(ref _currentOutstandingAccepts);
-                //Interlocked.Increment(ref _currentOutstandingRequests);
                 StartListening();
                 await _handler.Handle(socket, result);
                 await socket.DisconnectAsync(true);
